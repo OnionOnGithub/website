@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Visitor IP Address</title>
+  </head>
+  <body>
+    <h1>Visitor IP Address</h1>
+    <p id="ip-address">Loading...</p>
+
+    <script>
+      // Function to make an API call and retrieve the IP address
+      function getIpAddress() {
+        // Make an API call to retrieve the IP address
+        fetch('https://api.ipify.org?format=json')
+          .then(response => response.json())
+          .then(data => {
+            const ipAddress = data.ip;
+            const ipAddressElement = document.getElementById('ip-address');
+            ipAddressElement.textContent = `Your IP address: ${ipAddress}`;
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+      }
+
+      // Call the function to get the IP address when the page loads
+      window.onload = getIpAddress;
+    </script>
+  </body>
+</html>
+
